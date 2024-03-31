@@ -1,0 +1,42 @@
+{% extends "psutildash/base.html" %}
+
+{% block body %}
+<div class="page">
+    <header class="navbar navbar-expand-sm navbar-light d-print-none">
+        <div class="container-xl">
+            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                <a href="{% url 'django_psutil_dash:dashboard' %}">
+                    psutil-dash
+                </a>
+            </h1>
+            <ul class="navbar-nav d-none d-sm-flex me-auto">
+                <li class="nav-item">
+                    <a href="{% url 'django_psutil_dash:dashboard' %}" class="nav-link">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'django_psutil_dash:processes' %}" class="nav-link">
+                        Processes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'django_psutil_dash:disks' %}" class="nav-link">
+                        Disks
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'django_psutil_dash:network' %}" class="nav-link">
+                        Network
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="page-wrapper">
+        <div class="page-body">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

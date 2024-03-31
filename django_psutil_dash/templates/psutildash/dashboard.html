@@ -1,0 +1,138 @@
+{% extends "psutildash/layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+
+{% block content %}
+<div class="container-xl">
+    <div class="row row-deck row-cards">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">CPU</h4>
+                        <table class="table table-vcenter">
+                            <tbody>
+                                <tr>
+                                    <td>Cores</td>
+                                    <td>{{ cpu_info.cpu_count }}</td>
+                                </tr>
+                                {% for cpu_percent in cpu_info.cpu_percent %}
+                                <tr>
+                                    <td>CPU {{ forloop.counter }}</td>
+                                    <td>{{ cpu_percent }}%</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Memory</h4>
+                    <table class="table table-vcenter">
+                        <tbody>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ memory_info.total }}</td>
+                            </tr>
+                            <tr>
+                                <td>Available</td>
+                                <td>{{ memory_info.available }}</td>
+                            </tr>
+                            <tr>
+                                <td>Used</td>
+                                <td>{{ memory_info.used }}</td>
+                            </tr>
+                            <tr>
+                                <td>Percentage</td>
+                                <td>{{ memory_info.percent }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Swap</h4>
+                    <table class="table table-vcenter">
+                        <tbody>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ swap_info.total }}</td>
+                            </tr>
+                            <tr>
+                                <td>Used</td>
+                                <td>{{ swap_info.used }}</td>
+                            </tr>
+                            <tr>
+                                <td>Free</td>
+                                <td>{{ swap_info.free }}</td>
+                            </tr>
+                            <tr>
+                                <td>Percentage</td>
+                                <td>{{ swap_info.percent }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Disks</h4>
+                    <table class="table table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>Mountpoint</th>
+                                <th>Total</th>
+                                <th>Used</th>
+                                <th>Free</th>
+                                <th>Percent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for disk in disks_info %}
+                            <tr>
+                                <td>{{ disk.mountpoint }}</td>
+                                <td>{{ disk.total }}</td>
+                                <td>{{ disk.used }}</td>
+                                <td>{{ disk.free }}</td>
+                                <td>{{ disk.percent }}%</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Network</h4>
+                    <table class="table table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>Interface</th>
+                                <th>IP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for interface in network_info %}
+                            <tr>
+                                <td>{{ interface.interface }}</td>
+                                <td>{{ interface.ip }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

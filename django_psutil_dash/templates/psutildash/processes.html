@@ -1,0 +1,46 @@
+{% extends "psutildash/layout.html" %}
+
+{% block title %}Processes{% endblock %}
+
+{% block content %}
+<div class="container-xl">
+    <div class="row row-deck row-cards">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Processes</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th>User</th>
+                                <th>Start Time</th>
+                                <th>RSS</th>
+                                <th>VMS</th>
+                                <th>CPU</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for process in processes %}
+                            <tr>
+                                <td>{{ process.pid }}</td>
+                                <td>{{ process.name }}</td>
+                                <td>{{ process.status }}</td>
+                                <td>{{ process.username }}</td>
+                                <td>{{ process.created }}</td>
+                                <td>{{ process.rss }}</td>
+                                <td>{{ process.vms }}</td>
+                                <td>{{ process.cpu_percent }}%</td>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

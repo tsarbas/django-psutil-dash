@@ -1,0 +1,42 @@
+{% extends "psutildash/layout.html" %}
+
+{% block title %}Disks{% endblock %}
+
+{% block content %}
+<div class="container-xl">
+    <div class="row row-deck row-cards">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Processes</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>Device</th>
+                                <th>Mount Point</th>
+                                <th>FS Type</th>
+                                <th>Total</th>
+                                <th>Used</th>
+                                <th>Free</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for disk in disks %}
+                            <tr>
+                                <td>{{ disk.device }}</td>
+                                <td>{{ disk.mountpoint }}</td>
+                                <td>{{ disk.fstype }}</td>
+                                <td>{{ disk.total }}</td>
+                                <td>{{ disk.used }}</td>
+                                <td>{{ disk.free }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "psutildash/layout.html" %}
+
+{% block title %}Network{% endblock %}
+
+{% block content %}
+<div class="container-xl">
+    <div class="row row-deck row-cards">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Network</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>Interface</th>
+                                <th>IP Address</th>
+                                <th>Bytes sent</th>
+                                <th>Bytes recv</th>
+                                <th>Packets sent</th>
+                                <th>Packets recv</th>
+                                <th>Errors in</th>
+                                <th>Errors out</th>
+                                <th>Dropped in</th>
+                                <th>Dropped out</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for interface in interfaces %}
+                            <tr>
+                                <td>{{ interface.interface }}</td>
+                                <td>{{ interface.ip_address }}</td>
+                                <td>{{ interface.bytes_sent }}</td>
+                                <td>{{ interface.bytes_recv }}</td>
+                                <td>{{ interface.packets_sent }}</td>
+                                <td>{{ interface.packets_recv }}</td>
+                                <td>{{ interface.errin }}</td>
+                                <td>{{ interface.errout }}</td>
+                                <td>{{ interface.dropin }}</td>
+                                <td>{{ interface.dropout }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Connections</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>FD</th>
+                                <th>PID</th>
+                                <th>Family</th>
+                                <th>Type</th>
+                                <th>Local Address</th>
+                                <th>Remote Address</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for connection in connections %}
+                            <tr>
+                                <td>{{ connection.fd }}</td>
+                                <td>{{ connection.pid }}</td>
+                                <td>{{ connection.family }}</td>
+                                <td>{{ connection.type }}</td>
+                                <td>{{ connection.laddr }}</td>
+                                <td>{{ connection.raddr }}</td>
+                                <td>{{ connection.status }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
